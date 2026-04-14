@@ -129,7 +129,46 @@
   <!-- Song input -->
   <div class="card">
     <div class="input-row">
-      <input class="song-input" id="songInput" placeholder="🎵 ዘፈን ጠይቅ..." onkeydown="if(event.key==='Enter')parseSong()"/>
+      <input class="song-input" id="songInput" placeholder="🎵 ዘፈን ጠይቅ..." onkeydown="if(event.key==='Enter')async function parseSong(name){
+  name = name || document.getElementById('songInput').value.trim();
+  if(!name) return;
+  const btn = document.getElementById('parseBtn');
+  btn.textContent = '⏳'; btn.disabled = true;
+  document.getElementById('nowPlaying').classList.add('hidden');
+  
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01',
+        'x-api-key': 'እዚህ ጋር_ትክክለኛውን_ቁልፍ_አስገባ' // ቁልፉን እዚህ አስገባ
+      },
+      body: JSON.stringify({
+        model: 'claude-3-haiku-20240307', // ይህ ሞዴል ፈጣንና ርካሽ ነው
+        max_tokens: 1000,
+        messages: [{
+          role: 'user', 
+          content: `Create Ethiopian children's melody for: "${name}". Use ONLY notes: ዶ,ሬ,ሚ,ላ,ሲ,ዶ2,ሬ2,ሚ2. Respond ONLY in valid JSON: {"title":"...","notes":[{"note":"ዶ","duration":0.5,"time":0},...]}`
+        }]
+      })
+    });
+
+    const data = await res.json();
+    if(data.error) throw new Error(data.error.message); // ስህተት ካለ እንዲያሳየን
+
+    const song = JSON.parse(data.content[0].text.trim());
+    currentSong = song;
+    document.getElementById('nowName').textContent = '🎵 ' + song.title;
+    document.getElementById('nowPlaying').classList.remove('hidden');
+    playSongData(song);
+  } catch(e) { 
+    console.error(e);
+    alert('ስህተት ተፈጥሯል፦ ' + e.message); 
+  } finally { 
+    btn.textContent = '🎵 ፈልግ'; btn.disabled = false; 
+  }
+}()"/>
       <button class="song-btn" id="parseBtn" onclick="parseSong()">🎵 ፈልግ</button>
     </div>
     <div id="nowPlaying" class="now-playing hidden">
