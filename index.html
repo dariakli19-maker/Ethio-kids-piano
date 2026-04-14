@@ -3,50 +3,30 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>የኢትዮጵያ ፒያኖ | Ethiopian Kids Piano</title>
+  <title>የኢትዮጵያ ፒያኖ</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
     body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;color:white;overflow-x:hidden;}
-    .header{text-align:center;padding:16px 12px 8px;}
-    .header-logo{font-size:36px;margin-bottom:4px;}
-    .header-title{font-size:22px;font-weight:800;background:linear-gradient(90deg,#FFD700,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .header-sub{color:#93c5fd;font-size:11px;margin-top:2px;}
-    .tabs{display:flex;gap:8px;padding:8px 12px;justify-content:center;}
-    .tab{flex:1;max-width:160px;padding:10px;border-radius:12px;border:none;background:rgba(255,255,255,0.08);color:white;font-weight:700;font-size:14px;cursor:pointer;}
-    .tab.active{background:linear-gradient(135deg,#667eea,#764ba2);}
-    .card{background:rgba(255,255,255,0.06);border-radius:18px;padding:14px;margin:8px 12px;border:1px solid rgba(255,255,255,0.1);}
-    .sound-btns{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
-    .sound-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px;color:white;cursor:pointer;font-size:13px;}
-    .sound-btn.active{background:linear-gradient(135deg,#667eea,#764ba2);font-weight:700;}
-    .keys-wrap{overflow-x:auto;padding:4px 0;}
-    .keys{display:flex;gap:4px;min-width:max-content;padding:4px 12px;}
-    .key{width:72px;height:130px;border-radius:0 0 14px 14px;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:10px;transition:transform .1s;}
-    .key.active{transform:scaleY(0.93);transform-origin:top;}
-    .key-note{font-weight:800;font-size:14px;color:white;}
+    .header{text-align:center;padding:15px;}
+    .header-title{font-size:24px;font-weight:800;background:linear-gradient(90deg,#FFD700,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .card{background:rgba(255,255,255,0.06);border-radius:15px;padding:12px;margin:8px 12px;border:1px solid rgba(255,255,255,0.1);}
+    .keys-wrap{overflow-x:auto;padding:10px 0;}
+    .keys{display:flex;gap:5px;min-width:max-content;justify-content:center;}
+    .key{width:65px;height:120px;border-radius:0 0 10px 10px;border:none;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font-weight:bold;color:white;}
+    .key.active{transform:scaleY(0.9);transform-origin:top;}
     .input-row{display:flex;gap:8px;}
-    .song-input{flex:1;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:10px;color:white;}
-    .song-btn{background:linear-gradient(135deg,#667eea,#764ba2);border:none;border-radius:10px;padding:10px 14px;color:white;font-weight:700;cursor:pointer;}
-    .now-playing{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
-    .play-btn{background:linear-gradient(135deg,#11998e,#38ef7d);border:none;border-radius:8px;padding:7px 14px;color:white;cursor:pointer;}
-    .hidden{display:none !important;}
-    .suggs{display:flex;flex-wrap:wrap;gap:7px;padding:10px;}
-    .sugg{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:20px;padding:6px 12px;color:white;cursor:pointer;font-size:12px;}
+    .song-input{flex:1;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:10px;color:white;}
+    .song-btn{background:linear-gradient(135deg,#667eea,#764ba2);border:none;border-radius:8px;padding:10px;color:white;cursor:pointer;font-weight:bold;}
+    .suggs{display:flex;flex-wrap:wrap;gap:6px;padding:10px;}
+    .sugg{background:rgba(255,255,255,0.1);border-radius:15px;padding:5px 12px;font-size:12px;cursor:pointer;color:white;border:none;}
+    .hidden{display:none;}
   </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="header-logo">🎹🇪🇹</div>
-  <div class="header-title">የኢትዮጵያ ፒያኖ</div>
-  <div class="header-sub">የትዝታ ቅኝት • Tizita Scale</div>
-</div>
-
-<div class="card">
-  <div class="sound-btns">
-    <button class="sound-btn active" onclick="setSound(0,this)">🎵 ትዝታ</button>
-    <button class="sound-btn" onclick="setSound(1,this)">🪕 ክራር</button>
-    <button class="sound-btn" onclick="setSound(2,this)">🪈 ፉሪ</button>
-  </div>
+  <div class="header-title">የኢትዮጵያ ፒያኖ 🎹</div>
+  <p style="font-size:10px; color:#93c5fd;">Tizita Scale (ትዝታ ቅኝት)</p>
 </div>
 
 <div class="card">
@@ -57,12 +37,12 @@
 
 <div class="card">
   <div class="input-row">
-    <input class="song-input" id="songInput" placeholder="ዘፈን ስም ይጻፉ..."/>
+    <input class="song-input" id="songInput" placeholder="የዘፈን ስም ይጻፉ..."/>
     <button class="song-btn" id="parseBtn" onclick="parseSong()">🎵 ፈልግ</button>
   </div>
-  <div id="nowPlaying" class="now-playing hidden">
-    <span id="nowName"></span>
-    <button class="play-btn" id="playBtn">▶ Play</button>
+  <div id="nowPlaying" class="hidden" style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
+    <span id="nowName" style="color:#38ef7d; font-size:14px;"></span>
+    <button id="playBtn" style="background:#11998e; color:white; border:none; padding:5px 15px; border-radius:5px; cursor:pointer;">▶ አጫውት</button>
   </div>
 </div>
 
@@ -70,6 +50,7 @@
   <button class="sugg" onclick="parseSong('ጨረቃዬ')">🌙 ጨረቃዬ</button>
   <button class="sugg" onclick="parseSong('አበባዬ')">🌸 አበባዬ</button>
   <button class="sugg" onclick="parseSong('እናቴ')">💝 እናቴ</button>
+  <button class="sugg" onclick="parseSong('ትዝታ')">🎶 ትዝታ</button>
 </div>
 
 <script>
@@ -77,7 +58,7 @@ const NOTES = ['ዶ','ሬ','ሚ','ላ','ሲ','ዶ2','ሬ2','ሚ2'];
 const COLORS = ['#FF6B6B','#FF8E53','#FFD93D','#6BCB77','#4D96FF','#845EC2','#FF6F91','#FF4500'];
 const FREQS = {ዶ:293.66,ሬ:329.63,ሚ:369.99,ላ:440,ሲ:493.88,'ዶ2':587.33,'ሬ2':659.25,'ሚ2':739.99};
 
-let ctx = null, soundIdx = 0, currentSong = null, songTouts = [];
+let ctx = null, songTouts = [];
 
 function initAudio(){
   if(!ctx) ctx = new (window.AudioContext||window.webkitAudioContext)();
@@ -88,7 +69,7 @@ function playTone(freq, dur=0.6){
   initAudio();
   const osc=ctx.createOscillator(), gain=ctx.createGain();
   osc.connect(gain); gain.connect(ctx.destination);
-  osc.type = soundIdx === 0 ? 'triangle' : soundIdx === 1 ? 'sawtooth' : 'sine';
+  osc.type='triangle';
   osc.frequency.setValueAtTime(freq, ctx.currentTime);
   gain.gain.setValueAtTime(0.3, ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + dur);
@@ -113,23 +94,17 @@ function buildKeys(){
     const k = document.createElement('button');
     k.className = 'key'; k.dataset.note = note;
     k.style.background = COLORS[i];
-    k.innerHTML = `<span class="key-note">${note}</span>`;
+    k.innerText = note;
     k.onclick = () => pressKey(note);
     container.appendChild(k);
   });
-}
-
-function setSound(i, btn){
-  soundIdx = i;
-  document.querySelectorAll('.sound-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
 }
 
 async function parseSong(name){
   name = name || document.getElementById('songInput').value.trim();
   if(!name) return;
   const btn = document.getElementById('parseBtn');
-  btn.textContent = '⏳'; btn.disabled = true;
+  btn.innerText = '⏳'; btn.disabled = true;
   
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -137,40 +112,35 @@ async function parseSong(name){
       headers: {
         'Content-Type': 'application/json',
         'anthropic-version': '2023-06-01',
-        'x-api-key': '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'
+        'x-api-key': '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' // <-- API KEYህን እዚህ አስገባ!
       },
       body: JSON.stringify({
         model: 'claude-3-haiku-20240307',
         max_tokens: 1000,
         messages: [{
           role: 'user', 
-          content: `Create a simple melody for "${name}" using only these notes: ዶ,ሬ,ሚ,ላ,ሲ,ዶ2. Respond ONLY with a JSON object like this: {"title":"Name","notes":[{"note":"ዶ","time":0,"duration":0.5}]}`
+          content: `Create a children's song melody for "${name}" using only: ዶ,ሬ,ሚ,ላ,ሲ,ዶ2. Return ONLY JSON: {"title":"...","notes":[{"note":"ዶ","time":0,"duration":0.5},...]}`
         }]
       })
     });
 
     const data = await res.json();
-    if(data.error) throw new Error(data.error.message);
-
     const song = JSON.parse(data.content[0].text.trim());
-    currentSong = song;
-    document.getElementById('nowName').textContent = '🎵 ' + song.title;
+    document.getElementById('nowName').innerText = 'ዘፈን፦ ' + song.title;
     document.getElementById('nowPlaying').classList.remove('hidden');
     document.getElementById('playBtn').onclick = () => playSongData(song);
     playSongData(song);
   } catch(e) {
-    alert('ስህተት፦ ' + e.message);
+    alert('ስህተት ተፈጥሯል! API Key በትክክል መገባቱን ያረጋግጡ።');
   } finally {
-    btn.textContent = '🎵 ፈልግ'; btn.disabled = false;
+    btn.innerText = '🎵 ፈልግ'; btn.disabled = false;
   }
 }
 
 function playSongData(song){
   songTouts.forEach(clearTimeout);
   song.notes.forEach(n => {
-    songTouts.push(setTimeout(() => {
-      pressKey(n.note);
-    }, n.time * 1000));
+    songTouts.push(setTimeout(() => pressKey(n.note), n.time * 1000));
   });
 }
 
